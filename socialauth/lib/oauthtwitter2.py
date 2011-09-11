@@ -26,7 +26,7 @@ def oauth_response(req):
     connection = urllib2.urlopen(req.to_url())
     response = connection.read()
     connection.close()
-    print response
+    return response
 
 
 class TwitterOAuthClient(oauth.OAuthClient):
