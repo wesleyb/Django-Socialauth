@@ -23,11 +23,11 @@ def get_connection():
     return httplib.HTTPSConnection(TWITTER_URL)
 
 def oauth_response(req):
-    connection = get_connection()
-    connection.request(req.http_method, req.to_url())
-    response = connection.getresponse().read()
+    connection = urllib2.urlopen(req.to_url())
+    response = connection.read()
     connection.close()
-    return response
+    print response
+
 
 class TwitterOAuthClient(oauth.OAuthClient):
     def __init__(self, consumer_key, consumer_secret, request_token_url=REQUEST_TOKEN_URL, access_token_url=ACCESS_TOKEN_URL, authorization_url=AUTHORIZATION_URL):
